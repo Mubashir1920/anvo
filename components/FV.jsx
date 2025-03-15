@@ -11,87 +11,104 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react"
-import { FutureValueChart } from "./future-value-chart"
-
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-]
-
-
-
-
-
+import { useEffect, useState } from "react"
+import FutureValueDashboard from "./future-value-dashboard"
 
 const FV = () => {
 
-    const [presentValue, setPresentValue] = useState("");
+    const [principalAmount, setPrinicpalValue] = useState("");
     const [interestRate, setInterestRate] = useState("");
     const [periodType, setPeriodType] = useState("");
     const [periods, setPeriods] = useState("");
-    const [showChart, setShowChart] = useState(true)
+    const [showChart, setShowChart] = useState(false)
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log({ presentValue, interestRate, periodType, periods });
+    // const handleFormSubmit = (e) => {
+    //     e.preventDefault();
+    //     setShowChart(true)
+    // };
 
+    // Update the chart dynamically whenever input values change
+    useEffect(() => {
+        if (principalAmount > 0 && interestRate > 0 && periods > 0) {
+            setShowChart(true);
+        } else {
+            setShowChart(false);
+        }
+    }, [principalAmount, interestRate, periods]);
 
-
-
-        setPresentValue('');
-        setInterestRate('')
-        setPeriodType('')
-        setPeriods('')
-        setShowChart(true)
-    };
 
     return (
-        <div className="flex w-full justify-between " >
-            <form onSubmit={handleFormSubmit} className="border space-y-4 rounded-md p-4">
-                <h1 className="text-xl font-bold">Calculate Future Value</h1>
+        <div className="grid grid-cols-1 border border-black  gap-6 w-full pt-20">
+            <div className="w-full">
+                <div className="sticky border top-20 p-4 rounded-md shadow-md">
+                    <h1 className="text-xl font-bold">Calculate Future Value</h1>
+                    <form className=" space-y-4 flex items-center flex-wrap gap-x-7 w-full">
 
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="pv">Present Value :</Label>
-                    <Input type="number" name="pv" placeholder="Present Value" value={presentValue} onChange={(e) => setPresentValue(e.target.value)} />
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                            <Label htmlFor="pv">Principal Amount :</Label>
+                            <Input
+                                type="number"
+                                onWheel={(e) => e.target.blur()}
+                                name="pv"
+                                placeholder="Principal Amount"
+                                value={principalAmount}
+                                onChange={(e) => setPrinicpalValue(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                            <Label htmlFor="interestRate">Interest Rate :</Label>
+                            <Input
+                                type="number"
+                                onWheel={(e) => e.target.blur()}
+                                name="interestRate"
+                                placeholder="Interest Rate %"
+                                value={interestRate}
+                                onChange={(e) => setInterestRate(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                            <Label htmlFor="periodType">Period Type</Label>
+                            <Select value={periodType} onValueChange={setPeriodType}>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Frequency" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="monthly">Monthly</SelectItem>
+                                    <SelectItem value="quarterly">Quarterly</SelectItem>
+                                    <SelectItem value="semiAnnually">Semi-Annually</SelectItem>
+                                    <SelectItem value="yearly">Yearly</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                            <Label htmlFor="periods">Periods :</Label>
+                            <Input
+                                type="number"
+                                onWheel={(e) => e.target.blur()}
+                                name="periods"
+                                placeholder="Periods"
+                                value={periods}
+                                onChange={(e) => setPeriods(e.target.value)}
+                            />
+                        </div>
+                    </form>
                 </div>
-
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="interestRate">Interest Rate :</Label>
-                    <Input type="number" name="interestRate" placeholder="Interest Rate %" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} />
-                </div>
-
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="periodType">Period Type</Label>
-                    <Select value={periodType} onValueChange={setPeriodType}>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Frequency" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="monthly">Monthly</SelectItem>
-                            <SelectItem value="quarterly">Quarterly</SelectItem>
-                            <SelectItem value="semiAnnually">Semi-Annually</SelectItem>
-                            <SelectItem value="yearly">Yearly</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="periods">Periods :</Label>
-                    <Input type="number" name="periods" placeholder="Periods" value={periods} onChange={(e) => setPeriods(e.target.value)} />
-                </div>
-
-                <Button type="submit" variant="default">Calculate</Button>
-            </form>
-            {showChart &&
-                <FutureValueChart />
-            }
+            </div>
+            <div className="w-full">
+                {showChart && (
+                    <FutureValueDashboard
+                        principal={Number(principalAmount)}
+                        rate={Number(interestRate / 100)}
+                        periods={Number(periods)}
+                    />
+                )}
+            </div>
         </div>
     );
 }
+
 
 export default FV
