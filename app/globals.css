@@ -3,6 +3,7 @@
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
+
 @layer base {
   :root {
     --chart-1: 12 76% 61%;

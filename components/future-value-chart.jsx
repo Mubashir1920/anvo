@@ -18,6 +18,18 @@ const calculateFutureValue = (principal = 1000, rate = 0.05, periods = 5) => {
   return data
 }
 
+const calculatePresentValue = (principal = 1000, rate = 0.05, periods = 5) => {
+
+  const data = []
+  for (let i = 0; i <= periods; i++) {
+    const futureValue = principal * Math.pow(1 + rate, i)
+    data.push({
+      period: i,
+      futureValue: Math.round(futureValue),
+    })
+  }
+  return data
+}
 // Initial investment of $1000 with 5% annual interest rate for 10 periods
 
 const ChartContainer = ({ children }) => {
@@ -80,14 +92,14 @@ const FutureValueChart = ({ principal, rate, periods }) => {
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
-                  label={{ value: "Number of Periods", position: "insideBottom", offset: -5 }}
+                  label={{ value: "Number of Periods", position: "insideBottom", offset: -20 }}
                 />
                 <YAxis
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) => `$${value}`}
-                  label={{ value: "Future Value", angle: -90, position: "insideLeft" }}
+                  label={{ value: "Future Value", offset: -20, angle: -90, position: "insideLeft" }}
                 />
                 <Line
                   dataKey="futureValue"

@@ -38,13 +38,13 @@ const FV = () => {
 
 
     return (
-        <div className="grid grid-cols-1 border border-black  gap-6 w-full pt-20">
-            <div className="w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3  lg:gap-6 gap-y-5 w-full pt-20">
+            <div className="w-full col-span-1 ">
                 <div className="sticky border top-20 p-4 rounded-md shadow-md">
-                    <h1 className="text-xl font-bold">Calculate Future Value</h1>
+                    <h1 className="text-xl font-bold mb-5">Calculate Future Value</h1>
                     <form className=" space-y-4 flex items-center flex-wrap gap-x-7 w-full">
 
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-full items-center gap-1.5">
                             <Label htmlFor="pv">Principal Amount :</Label>
                             <Input
                                 type="number"
@@ -56,7 +56,7 @@ const FV = () => {
                             />
                         </div>
 
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-full items-center gap-1.5">
                             <Label htmlFor="interestRate">Interest Rate :</Label>
                             <Input
                                 type="number"
@@ -68,7 +68,7 @@ const FV = () => {
                             />
                         </div>
 
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-full items-center gap-1.5">
                             <Label htmlFor="periodType">Period Type</Label>
                             <Select value={periodType} onValueChange={setPeriodType}>
                                 <SelectTrigger className="w-full">
@@ -83,7 +83,7 @@ const FV = () => {
                             </Select>
                         </div>
 
-                        <div className="grid w-full max-w-sm items-center gap-1.5">
+                        <div className="grid w-full max-w-full items-center gap-1.5">
                             <Label htmlFor="periods">Periods :</Label>
                             <Input
                                 type="number"
@@ -97,7 +97,7 @@ const FV = () => {
                     </form>
                 </div>
             </div>
-            <div className="w-full">
+            <div className="w-full col-span-2 ">
                 {showChart && (
                     <FutureValueDashboard
                         principal={Number(principalAmount)}
