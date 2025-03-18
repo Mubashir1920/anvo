@@ -1,20 +1,36 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 // Calculate future value data (same function as in the chart component)
-const calculateFutureValue = (principal, rate, periods) => {
+const calculateFutureValue = (principal, rate, years, periodType) => {
+  let periodYears = 0;
+  switch (periodType) {
+    case 'monthly':
+      periodYears = 12 * years;
+      break;
+    case 'quarterly':
+      periodYears = 4 * years;
+      break;
+    case 'semiAnnually':
+      periodYears = 2 * years;
+      break;
+    default:
+      periodYears = years;
+      break;
+  }
+
   const data = []
-  for (let i = 0; i <= periods; i++) {
+  for (let i = 0; i <= periodYears; i++) {
     const futureValue = principal * Math.pow(1 + rate, i)
     data.push({
       period: i,
-      futureValue: Math.round(futureValue),
+      futureValue: Number(futureValue.toPrecision(6)),
     })
   }
   return data
 }
 
-const FutureValueTable = ({ principal = 1000, rate = 0.05, periods = 10 }) => {
-  const tableData = calculateFutureValue(principal, rate, periods)
+const FutureValueTable = ({ principal, rate, years, periodType }) => {
+  const tableData = calculateFutureValue(principal, rate, years, periodType)
 
   return (
     <Card className="w-full">
@@ -47,7 +63,7 @@ const FutureValueTable = ({ principal = 1000, rate = 0.05, periods = 10 }) => {
                     <td className="py-3 px-4 text-right">
                       {index > 0 ? (
                         <span className="text-green-600">
-                          +${growth.toLocaleString()} ({growthPercentage.toFixed(1)}%)
+                          +${growth.toLocaleString()} ({growthPercentage.toFixed(2)}%)
                         </span>
                       ) : (
                         <span className="text-muted-foreground">—</span>

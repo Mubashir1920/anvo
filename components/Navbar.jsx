@@ -8,8 +8,8 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import ThemeSwitchButton from "./ThemeSwitchButton"
 
 const components = [
     {
@@ -51,14 +51,14 @@ const components = [
 
 export function Navbar() {
     return (
-        <div className="w-full z-[100] p-4 fixed top-0 shadow-sm bg-white/30 backdrop-blur-3xl " >
+        <div className="w-full z-[100] p-4 fixed top-0 dark:border-b dark:border-white/10 shadow-sm bg-white/60 dark:bg-black/60 backdrop-blur-lg " >
             <div>
                 <h2 className=" font-playfair  fixed top-6 left-16  font-extrabold tracking-tight " >FINTECHIE</h2>
             </div>
             <NavigationMenu className='mx-auto flex items-center justify-between' >
                 <NavigationMenuList>
                     <NavigationMenuItem >
-                        <Link href="/"   legacyBehavior passHref>
+                        <Link href="/" legacyBehavior passHref>
                             <NavigationMenuLink className='bg-transparent'>
                                 Home
                             </NavigationMenuLink>
@@ -107,6 +107,8 @@ export function Navbar() {
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
+            <ThemeSwitchButton className='absolute right-5 top-5'  />
+
         </div>
     )
 }

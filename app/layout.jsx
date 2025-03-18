@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} font-poppins flex flex-col min-h-screen  antialiased`}
+        className={`${poppins.variable} font-poppins dark:bg-black transition-colors duration-300 flex flex-col min-h-screen  antialiased`}
       >
         <Navbar />
         {children}

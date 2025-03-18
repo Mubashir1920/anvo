@@ -3,7 +3,6 @@
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 import {
     Select,
     SelectContent,
@@ -11,30 +10,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import FutureValueDashboard from "./future-value-dashboard"
 
 const FV = () => {
 
-    const [principalAmount, setPrinicpalValue] = useState("");
-    const [interestRate, setInterestRate] = useState("");
-    const [periodType, setPeriodType] = useState("");
-    const [periods, setPeriods] = useState("");
-    const [showChart, setShowChart] = useState(false)
+    const [principalAmount, setPrinicpalValue] = useState(0);
+    const [interestRate, setInterestRate] = useState(0);
+    const [periodType, setPeriodType] = useState('yearly');
+    const [years, setYears] = useState(0);
 
-    // const handleFormSubmit = (e) => {
-    //     e.preventDefault();
-    //     setShowChart(true)
-    // };
-
-    // Update the chart dynamically whenever input values change
-    useEffect(() => {
-        if (principalAmount > 0 && interestRate > 0 && periods > 0) {
-            setShowChart(true);
-        } else {
-            setShowChart(false);
-        }
-    }, [principalAmount, interestRate, periods]);
 
 
     return (
@@ -84,27 +69,28 @@ const FV = () => {
                         </div>
 
                         <div className="grid w-full max-w-full items-center gap-1.5">
-                            <Label htmlFor="periods">Periods :</Label>
+                            <Label htmlFor="years">Years :</Label>
                             <Input
                                 type="number"
                                 onWheel={(e) => e.target.blur()}
-                                name="periods"
-                                placeholder="Periods"
-                                value={periods}
-                                onChange={(e) => setPeriods(e.target.value)}
+                                name="years"
+                                placeholder="years"
+                                value={years}
+                                onChange={(e) => setYears(e.target.value)}
                             />
                         </div>
                     </form>
                 </div>
             </div>
             <div className="w-full col-span-2 ">
-                {showChart && (
-                    <FutureValueDashboard
-                        principal={Number(principalAmount)}
-                        rate={Number(interestRate / 100)}
-                        periods={Number(periods)}
-                    />
-                )}
+
+                <FutureValueDashboard
+                    principal={principalAmount}
+                    rate={interestRate / 100}
+                    periodType={periodType}
+                    years={years}
+                />
+
             </div>
         </div>
     );
