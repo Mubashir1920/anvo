@@ -39,7 +39,7 @@ export default function Home() {
           </Link>
           {/* Irregular Payment Stream Calculator */}
           <Link href='/irregular-calculator'>
-            <div className="border relative group cursor-pointer shadow-sm  group  duration-200   hover:border-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/50 dark:hover:border-purple-950   rounded-sm p-5 text-left" >
+            <div className="border relative group cursor-pointer shadow-sm  group  duration-200   hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/50 dark:hover:border-red-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
                 Irregular Payment Stream
               </h3>

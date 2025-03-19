@@ -11,43 +11,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import ThemeSwitchButton from "./ThemeSwitchButton"
 
-const components = [
-    {
-        title: "Alert Dialog",
-        href: "/docs/primitives/alert-dialog",
-        description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-        title: "Hover Card",
-        href: "/docs/primitives/hover-card",
-        description:
-            "For sighted users to preview content available behind a link.",
-    },
-    {
-        title: "Progress",
-        href: "/docs/primitives/progress",
-        description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-        title: "Scroll-area",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-    },
-    {
-        title: "Tabs",
-        href: "/docs/primitives/tabs",
-        description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-        title: "Tooltip",
-        href: "/docs/primitives/tooltip",
-        description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-]
+
 
 export function Navbar() {
     return (
@@ -68,7 +32,7 @@ export function Navbar() {
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className='bg-transparent' >Calculators</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid gap-3 p-2 md:w-[300px] lg:w-[300px] lg:grid-cols-1">
+                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                                 <Link href="/future-value" passHref legacyBehavior>
                                     <ListItem title="Future Value">
                                         Calculate Future Value of Principal
@@ -79,22 +43,19 @@ export function Navbar() {
                                         Calculate Present Value of Principal
                                     </ListItem>
                                 </Link>
+                                <Link href="/irregular-calculator" passHref legacyBehavior>
+                                    <ListItem title="Irregular Payment Stream">
+                                        Calculate Present/Future Value
+                                    </ListItem>
+                                </Link>
                             </ul>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className='bg-transparent' >Components</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className='bg-transparent' >Feedback</NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
+                            <ul className="grid w-[400px]  p-4  ">
+                                
                             </ul>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
@@ -107,7 +68,7 @@ export function Navbar() {
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
-            <ThemeSwitchButton className='absolute right-5 top-5'  />
+            <ThemeSwitchButton className='absolute right-5 top-5' />
 
         </div>
     )
