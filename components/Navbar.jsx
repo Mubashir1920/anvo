@@ -10,66 +10,75 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import ThemeSwitchButton from "./ThemeSwitchButton"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "./ui/label"
+import { Button } from "./ui/button"
+import { submitFeedback } from "@/lib/submitFeedback"
+
 
 
 
 export function Navbar() {
     return (
-        <div className="w-full z-[100] p-4 fixed top-0 dark:border-b dark:border-white/10 shadow-sm bg-white/60 dark:bg-black/60 backdrop-blur-lg " >
-            <div>
-                <h2 className=" font-playfair  fixed top-6 left-16  font-extrabold tracking-tight " >FINTECHIE</h2>
+        <div className="w-full z-[100]  p-4 fixed top-0 dark:border-b dark:border-white/10 shadow-sm bg-white/60 dark:bg-black/60 backdrop-blur-lg " >
+            <div className='mx-auto  px-10 flex items-center justify-between    ' >
+                <div>
+                    <h2 className=" font-playfair font-extrabold text-[18px] tracking-tight " >FINTECHIE</h2>
+                </div>
+
+                <NavigationMenu  >
+                    <NavigationMenuList>
+                        <NavigationMenuItem >
+                            <Link href="/" legacyBehavior passHref>
+                                <NavigationMenuLink className='bg-transparent'>
+                                    Home
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger className='bg-transparent' >Calculators</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className=" grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                    <Link href="/future-value" passHref legacyBehavior>
+                                        <ListItem title="Future Value">
+                                            Calculate Future Value of Principal
+                                        </ListItem>
+                                    </Link>
+                                    <Link href="/present-value" passHref legacyBehavior>
+                                        <ListItem title="Present Value">
+                                            Calculate Present Value of Principal
+                                        </ListItem>
+                                    </Link>
+                                    <Link href="/irregular-calculator" passHref legacyBehavior>
+                                        <ListItem title="Irregular Payment Stream">
+                                            Calculate Present/Future Value
+                                        </ListItem>
+                                    </Link>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger className='bg-transparent' >Feedback</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <form action={submitFeedback}>
+                                    <ul className="grid w-[400px] p-4">
+                                        <Label className="mb-2">Write Your Feedback Here</Label>
+                                        <Textarea name="feedback" required />
+                                        <Button className="mt-2" type="submit">
+                                            Send Feedback
+                                        </Button>
+                                    </ul>
+
+                                </form>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+
+                    </NavigationMenuList>
+                </NavigationMenu>
+                <ThemeSwitchButton />
+
             </div>
-            <NavigationMenu className='mx-auto flex items-center justify-between' >
-                <NavigationMenuList>
-                    <NavigationMenuItem >
-                        <Link href="/" legacyBehavior passHref>
-                            <NavigationMenuLink className='bg-transparent'>
-                                Home
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className='bg-transparent' >Calculators</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                <Link href="/future-value" passHref legacyBehavior>
-                                    <ListItem title="Future Value">
-                                        Calculate Future Value of Principal
-                                    </ListItem>
-                                </Link>
-                                <Link href="/present-value" passHref legacyBehavior>
-                                    <ListItem title="Present Value">
-                                        Calculate Present Value of Principal
-                                    </ListItem>
-                                </Link>
-                                <Link href="/irregular-calculator" passHref legacyBehavior>
-                                    <ListItem title="Irregular Payment Stream">
-                                        Calculate Present/Future Value
-                                    </ListItem>
-                                </Link>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger className='bg-transparent' >Feedback</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px]  p-4  ">
-                                
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
-                            <NavigationMenuLink className='bg-transparent'>
-                                Documentation
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-            <ThemeSwitchButton className='absolute right-5 top-5' />
-
         </div>
     )
 }

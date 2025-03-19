@@ -83,7 +83,7 @@ export default function IrregularCashFlowCalculator() {
         <CardContent className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="calc-type">Calculation Type</Label>
-            <Select value={calcType}  onValueChange={(value) => setCalcType(value)}>
+            <Select value={calcType} onValueChange={(value) => setCalcType(value)}>
               <SelectTrigger id="calc-type">
                 <SelectValue placeholder="Select calculation type" />
               </SelectTrigger>
@@ -100,6 +100,7 @@ export default function IrregularCashFlowCalculator() {
               id="rate"
               type="number"
               step="0.01"
+              min='1'
               value={rate}
               onChange={(e) => setRate(e.target.value)}
               placeholder="Enter interest rate"
