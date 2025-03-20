@@ -47,6 +47,16 @@ export default function Home() {
               <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
             </div>
           </Link>
+          {/* Ordinary Annuity Calculator */}
+          <Link href='/ordinary-annuity'>
+            <div className="border relative group cursor-pointer shadow-sm  group  duration-200   hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 dark:hover:border-blue-950   rounded-sm p-5 text-left" >
+              <h3 className="font-semibold " >
+                Ordinary Annuity Calculator
+              </h3>
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Calculate Present and Future Values of your Annuity</p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+            </div>
+          </Link>
         </div>
 
       </div>

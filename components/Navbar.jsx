@@ -39,7 +39,7 @@ export function Navbar() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger className='bg-transparent' >Calculators</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className=" grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                                <ul className=" grid w-[300px] gap-3 p-4   ">
                                     <Link href="/future-value" passHref legacyBehavior>
                                         <ListItem title="Future Value">
                                             Calculate Future Value of Principal
@@ -53,6 +53,18 @@ export function Navbar() {
                                     <Link href="/irregular-calculator" passHref legacyBehavior>
                                         <ListItem title="Irregular Payment Stream">
                                             Calculate Present/Future Value
+                                        </ListItem>
+                                    </Link>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger className='bg-transparent' >Annuities</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <ul className=" grid w-[300px] gap-3 p-4   ">
+                                    <Link href="/ordinary-annuity" passHref legacyBehavior>
+                                        <ListItem title="Ordinary Annuity">
+                                            Calculate Present/Future Value of Annuities
                                         </ListItem>
                                     </Link>
                                 </ul>
