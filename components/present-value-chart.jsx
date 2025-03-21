@@ -4,8 +4,8 @@ import { TrendingDown } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Calculate Present Value data
-const calculatePresentValue = (futureValue, rate, years, periodType, streams) => {
-    if (streams.length > 0) return streams
+const calculatePresentValue = (futureValue, rate, years, periodType) => {
+
     let periods = 0;
     switch (periodType) {
         case 'monthly':
@@ -59,8 +59,8 @@ const ChartTooltipContent = ({ active, payload }) => {
     );
 };
 
-const PresentValueChart = ({ futureValue, rate, years, periodType, streams }) => {
-    const chartData = calculatePresentValue(futureValue, rate, years, periodType, streams);
+const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
+    const chartData = calculatePresentValue(futureValue, rate, years, periodType);
     return (
         <Card className="w-full">
             <CardHeader>

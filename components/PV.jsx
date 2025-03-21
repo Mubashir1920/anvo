@@ -19,24 +19,8 @@ const PV = () => {
             <div className="w-full col-span-1 ">
                 <div className="sticky border top-20 p-4 rounded-md shadow-md">
                     <h1 className="text-xl font-bold mb-5">Calculate Present Value</h1>
-                    <form className=" space-y-4 flex items-center flex-wrap gap-x-7 w-full">
-
-                        <div className="grid w-full max-w-full items-center gap-1.5">
-                            <Label htmlFor="periodType">Payments Type</Label>
-                            <Select value={paymentsType} onValueChange={setPaymentsType}>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Regular/Irregular" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="regular">Regular Stream</SelectItem>
-                                    <SelectItem value="irregular">Irregular Stream</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-
-
-                        <div className="w-full" >
-
+                    <form className=" space-y-6 flex items-center flex-wrap gap-x-7  w-full">
+                        <div className="w-full space-y-4 " >
                             <div className="grid w-full max-w-full items-center gap-1.5">
                                 <Label htmlFor="fv">Future Amount :</Label>
                                 <Input

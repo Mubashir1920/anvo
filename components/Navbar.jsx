@@ -1,5 +1,7 @@
 
 import Link from "next/link"
+
+
 import { cn } from "@/lib/utils"
 import {
     NavigationMenu,
@@ -10,17 +12,12 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import ThemeSwitchButton from "./ThemeSwitchButton"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "./ui/label"
-import { Button } from "./ui/button"
-import { submitFeedback } from "@/lib/submitFeedback"
-
-
+import FeedbackForm from "./FeedbackForm"
 
 
 export function Navbar() {
     return (
-        <div className="w-full z-[100]  p-4 fixed top-0 dark:border-b dark:border-white/10 shadow-sm bg-white/60 dark:bg-black/60 backdrop-blur-lg " >
+        <div className="w-full z-[100]  p-4 fixed top-0 dark:border-b dark:border-white/10 shadow-sm bg-transparent backdrop-blur-sm dark:bg-black/30 " >
             <div className='mx-auto  px-10 flex items-center justify-between    ' >
                 <div>
                     <h2 className=" font-playfair font-extrabold text-[18px] tracking-tight " >FINTECHIE</h2>
@@ -62,8 +59,8 @@ export function Navbar() {
                             <NavigationMenuTrigger className='bg-transparent' >Annuities</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className=" grid w-[300px] gap-3 p-4   ">
-                                    <Link href="/ordinary-annuity" passHref legacyBehavior>
-                                        <ListItem title="Ordinary Annuity">
+                                    <Link href="/annuity-calculator" passHref legacyBehavior>
+                                        <ListItem title="Annuity Calculator">
                                             Calculate Present/Future Value of Annuities
                                         </ListItem>
                                     </Link>
@@ -73,16 +70,7 @@ export function Navbar() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger className='bg-transparent' >Feedback</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <form action={submitFeedback}>
-                                    <ul className="grid w-[400px] p-4">
-                                        <Label className="mb-2">Write Your Feedback Here</Label>
-                                        <Textarea name="feedback" required />
-                                        <Button className="mt-2" type="submit">
-                                            Send Feedback
-                                        </Button>
-                                    </ul>
-
-                                </form>
+                               <FeedbackForm />
                             </NavigationMenuContent>
                         </NavigationMenuItem>
 

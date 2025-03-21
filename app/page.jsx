@@ -16,7 +16,7 @@ export default function Home() {
         <p className="mb-8 text-lg  text-gray-500 lg:text-xl sm:px-16 xl:px-48 ">
           Tools That Help to Calculate and take decision rationally and smartly.
         </p>
-        <div className="grid grid-cols-1 grid-flow-row lg:grid-cols-3 gap-5 lg:gap-10">
+        <div className="grid grid-cols-1 grid-flow-row lg:grid-cols-3 gap-5 lg:gap-2">
           {/* Future Value Calculator Box */}
           <Link href='/future-value'>
             <div className="border relative cursor-pointer shadow-sm group dark:hover:bg-green-950/70  duration-200   hover:border-green-300 hover:bg-green-50 dark:hover:border-green-800   rounded-sm p-5 text-left" >
@@ -48,12 +48,12 @@ export default function Home() {
             </div>
           </Link>
           {/* Ordinary Annuity Calculator */}
-          <Link href='/ordinary-annuity'>
+          <Link href='/annuity-calculator'>
             <div className="border relative group cursor-pointer shadow-sm  group  duration-200   hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 dark:hover:border-blue-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
-                Ordinary Annuity Calculator
+                Annuity Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Calculate Present and Future Values of your Annuity</p>
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Calculate Present and Future Values of your Ordinary or Annuity Due</p>
               <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
             </div>
           </Link>

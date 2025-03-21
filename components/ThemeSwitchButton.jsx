@@ -32,7 +32,7 @@ const ThemeSwitchButton = ({ className }) => {
             onClick={() => setMode(mode === "light" ? "dark" : "light")}
             variant="outline"
             size="icon"
-            className={cn("cursor-pointer text-xs font-bold", className)}
+            className={cn("cursor-pointer bg-transparent text-xs font-bold", className)}
         >
             <SunIcon className="dark:hidden" />
             <Moon className="hidden dark:inline-block" />

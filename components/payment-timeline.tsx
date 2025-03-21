@@ -1,4 +1,6 @@
-import { DollarSign, ArrowRight } from "lucide-react"
+"use client"
+
+import { DollarSign, ArrowRight, ArrowLeft } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
@@ -7,11 +9,18 @@ interface PaymentTimelineProps {
   periods: number
   calculationType: "pv" | "fv"
   result: number | null
+  annuityType?: "ordinary" | "due"
 }
 
-export function PaymentTimeline({ payment, periods, calculationType, result }: PaymentTimelineProps) {
+export function PaymentTimeline({
+  payment,
+  periods,
+  calculationType,
+  result,
+  annuityType = "ordinary",
+}: PaymentTimelineProps) {
   // Limit to showing max 12 periods on timeline for UI clarity
-  const displayPeriods = Math.min(periods, 10)
+  const displayPeriods = Math.min(periods, 12)
   const showingAllPeriods = displayPeriods === periods
 
   const formatCurrency = (value: number) => {
@@ -24,7 +33,7 @@ export function PaymentTimeline({ payment, periods, calculationType, result }: P
   }
 
   return (
-    <Card >
+    <Card>
       <CardContent className="pt-6">
         <div className="relative">
           {/* Timeline line */}
@@ -46,6 +55,16 @@ export function PaymentTimeline({ payment, periods, calculationType, result }: P
               {calculationType === "pv" && result !== null && (
                 <span className="text-xs font-bold mt-1">{formatCurrency(result)}</span>
               )}
+
+              {/* First payment for annuity due */}
+              {annuityType === "due" && (
+                <div className="mt-2">
+                  <span className="text-xs font-bold text-primary">{formatCurrency(payment)}</span>
+                  <div className="flex items-center justify-center mt-1">
+                    <span className="text-xs text-muted-foreground">First payment</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Period markers */}
@@ -55,7 +74,16 @@ export function PaymentTimeline({ payment, periods, calculationType, result }: P
                   {index + 1}
                 </div>
                 <span className="text-xs">Period {index + 1}</span>
-                <span className="text-xs font-bold mt-1">{formatCurrency(payment)}</span>
+
+                {/* Payment indicator based on annuity type */}
+                {annuityType === "ordinary" && (
+                  <span className="text-xs font-bold mt-1">{formatCurrency(payment)}</span>
+                )}
+
+                {/* For annuity due, show payment at beginning of next period (except for last period) */}
+                {annuityType === "due" && index < displayPeriods - 1 && (
+                  <span className="text-xs font-bold mt-1">{formatCurrency(payment)}</span>
+                )}
               </div>
             ))}
 
@@ -89,8 +117,17 @@ export function PaymentTimeline({ payment, periods, calculationType, result }: P
 
           {/* Payment direction arrows */}
           <div className="mt-6 flex items-center justify-center text-sm text-muted-foreground">
-            <span>Payments of {formatCurrency(payment)} made at the end of each period</span>
-            <ArrowRight className="ml-2 h-4 w-4" />
+            {annuityType === "ordinary" ? (
+              <>
+                <span>Payments of {formatCurrency(payment)} made at the end of each period</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </>
+            ) : (
+              <>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                <span>Payments of {formatCurrency(payment)} made at the beginning of each period</span>
+              </>
+            )}
           </div>
         </div>
       </CardContent>

@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-    
   try {
-    const data = await req.formData(); // Parse form data
-    const feedback = data.get("feedback");
+    const data = await req.json(); // Parse JSON request body
+    const feedback = data.feedback;
 
     if (!feedback || feedback.trim() === "") {
       return NextResponse.json(
@@ -12,14 +11,15 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
-    console.log("Received Feedback:", feedback);
+    // Save feedback to database (Replace with your actual DB logic)
+    // await db.feedback.create({ data: { text: feedback } });
 
     return NextResponse.json(
       { message: "Feedback submitted successfully" },
       { status: 200 }
     );
   } catch (error) {
+    console.error("Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
