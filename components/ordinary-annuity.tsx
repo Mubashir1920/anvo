@@ -136,7 +136,7 @@ export function OrdinaryAnnuity() {
               </div>
 
               {showPvTimeline && (
-                <div className="mt-6">
+                <div className="mt-6  ">
                   <h3 className="text-lg font-medium mb-4">Payment Timeline</h3>
                   <PaymentTimeline payment={pvPayment} periods={pvPeriods} calculationType="pv" result={pvResult} />
                 </div>

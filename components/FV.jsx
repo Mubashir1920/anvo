@@ -1,6 +1,8 @@
 'use client'
 
 
+import { useState } from "react"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -10,15 +12,15 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react"
-import FutureValueDashboard from "./future-value-dashboard"
+import FutureValueChart from "./future-value-chart"
+import FutureValueTable from "./future-value-table"
 
 const FV = () => {
 
-    const [principalAmount, setPrinicpalValue] = useState(0);
-    const [interestRate, setInterestRate] = useState(0);
+    const [principalAmount, setPrinicpalValue] = useState('');
+    const [interestRate, setInterestRate] = useState('');
     const [periodType, setPeriodType] = useState('yearly');
-    const [years, setYears] = useState(0);
+    const [years, setYears] = useState('');
 
 
 
@@ -82,15 +84,9 @@ const FV = () => {
                     </form>
                 </div>
             </div>
-            <div className="w-full col-span-2 ">
-
-                <FutureValueDashboard
-                    principal={principalAmount}
-                    rate={interestRate / 100}
-                    periodType={periodType}
-                    years={years}
-                />
-
+            <div className="w-full col-span-2 space-y-4  ">
+                <FutureValueChart periodType={periodType} principal={principalAmount} rate={interestRate / 100} years={years} />
+                <FutureValueTable periodType={periodType} principal={principalAmount} rate={interestRate / 100} years={years} />
             </div>
         </div>
     );

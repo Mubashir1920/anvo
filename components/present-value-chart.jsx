@@ -61,12 +61,18 @@ const ChartTooltipContent = ({ active, payload }) => {
 
 const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
     const chartData = calculatePresentValue(futureValue, rate, years, periodType);
+    console.log(chartData);
     return (
         <Card className="w-full">
             <CardHeader>
                 <CardTitle>Present Value Chart</CardTitle>
                 <CardDescription>
                     Present value of ${futureValue} in {years} years at {(rate * 100).toFixed(2)}% interest
+                </CardDescription>
+                <CardDescription>
+                    {chartData && chartData[0].presentValue && rate && years ? <div className="leading-none text-muted-foreground">
+                        The Future Amount Will Have Present Value of <span className="font-semibold" > {chartData[0].presentValue} </span>
+                    </div> : ''}
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -78,7 +84,7 @@ const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
                                 margin={{
                                     top: 40,
                                     right: 40,
-                                    left: 40,
+                                    left: 5,
                                     bottom: 40,
                                 }}
                             >
@@ -96,7 +102,7 @@ const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
                                     axisLine={false}
                                     tickMargin={8}
                                     tickFormatter={(value) => `$${value}`}
-                                    label={{ value: "Present Value", offset: -20, angle: -90, position: "insideLeft" }}
+                                    label={{ value: "Present Value", offset: 2, angle: -90, position: "insideLeft" }}
                                     className="text-sm"
                                 />
                                 <Line

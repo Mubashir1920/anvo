@@ -83,7 +83,7 @@ const FutureValueChart = ({ principal, rate, years, periodType }) => {
                 margin={{
                   top: 30,
                   right: 30,
-                  left: 30,
+                  left: 5,
                   bottom: 30,
                 }}
               >
@@ -101,7 +101,7 @@ const FutureValueChart = ({ principal, rate, years, periodType }) => {
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) => `${value}`}
-                  label={{ value: "Amount", offset: -20, angle: -90, position: "insideLeft"  }}
+                  label={{ value: "Amount", offset: 0, angle: -90, position: "insideLeft"  }}
                   className="text-sm"
                 />
                 <Line

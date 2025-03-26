@@ -1,17 +1,19 @@
 'use client'
 import { useState } from "react";
-import PresentValueDashboard from "./presentValue-dashboard"
+
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import PresentValueChart from "./present-value-chart";
+import PresentValueTable from "./present-value-table";
 
 
 const PV = () => {
 
-    const [futureAmount, setFutureAmount] = useState(0);
-    const [interestRate, setInterestRate] = useState(0);
+    const [futureAmount, setFutureAmount] = useState('');
+    const [interestRate, setInterestRate] = useState('');
     const [periodType, setPeriodType] = useState('yearly');
-    const [years, setYears] = useState(0);
+    const [years, setYears] = useState('');
 
 
     return (
@@ -70,18 +72,13 @@ const PV = () => {
                                     onChange={(e) => setYears(e.target.value)}
                                 />
                             </div>
-                        </div> 
+                        </div>
                     </form>
                 </div>
             </div>
-            <div className="w-full col-span-2 ">
-
-                <PresentValueDashboard
-                    futureValue={futureAmount}
-                    rate={interestRate / 100}
-                    years={years}
-                    periodType={periodType}
-                />
+            <div className="w-full col-span-2 space-y-4  ">
+                <PresentValueChart futureValue={futureAmount} rate={interestRate / 100} years={years} periodType={periodType} />
+                <PresentValueTable futureValue={futureAmount} rate={interestRate / 100} years={years} periodType={periodType} />
 
             </div>
         </div>

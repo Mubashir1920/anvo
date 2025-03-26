@@ -33,7 +33,7 @@ export function PaymentTimeline({
   }
 
   return (
-    <Card>
+    <Card className="overflow-hidden" >
       <CardContent className="pt-6">
         <div className="relative">
           {/* Timeline line */}

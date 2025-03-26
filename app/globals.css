@@ -139,9 +139,6 @@
   @apply px-4;
 }
 
-@utility card-animate{
-  @apply motion-scale-in-[0.8] motion-translate-x-in-[1%] motion-translate-y-in-[8%] motion-opacity-in-[10%] motion-blur-in-[15px] motion-delay-500
-}
 
 @layer base {
   * {
