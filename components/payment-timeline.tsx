@@ -1,96 +1,96 @@
-import { DollarSign, ArrowRight } from "lucide-react"
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
 
 interface PaymentTimelineProps {
   payment: number
   periods: number
   calculationType: "pv" | "fv"
   result: number | null
+  annuityType?: "ordinary" | "due"
 }
 
-export function PaymentTimeline({ payment, periods, calculationType, result }: PaymentTimelineProps) {
-  // Limit to showing max 12 periods on timeline for UI clarity
-  const displayPeriods = Math.min(periods, 10)
-  const showingAllPeriods = displayPeriods === periods
-
+export function PaymentTimeline({
+  payment,
+  periods,
+  calculationType,
+  result,
+  annuityType = "ordinary",
+}: PaymentTimelineProps) {
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(value)
   }
 
+  // Generate timeline points - simplified for visualization
+  const timelinePoints = Array.from({ length: Math.min(periods, 10) }, (_, i) => {
+    const period = i + 1
+    return {
+      period,
+      payment,
+      // For annuity due, the payment is at the beginning of the period
+      // For ordinary annuity, the payment is at the end of the period
+      paymentPosition: annuityType === "due" ? "beginning" : "end",
+    }
+  })
+
+  // Add the result point
+  if (calculationType === "pv") {
+    timelinePoints.unshift({
+      period: 0,
+      payment: result || 0,
+      paymentPosition: "present",
+    })
+  } else {
+    timelinePoints.push({
+      period: periods + 1,
+      payment: result || 0,
+      paymentPosition: "future",
+    })
+  }
+
   return (
-    <Card >
+    <Card>
       <CardContent className="pt-6">
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute h-0.5 bg-muted top-10 left-0 right-0 z-0"></div>
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
 
-          {/* Timeline markers */}
-          <div className="flex justify-between relative z-10">
-            {/* Starting point */}
-            <div className="flex flex-col items-center">
-              <div
-                className={cn(
-                  "w-8 h-8 rounded-full flex items-center justify-center mb-2",
-                  calculationType === "pv" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
-                )}
-              >
-                {calculationType === "pv" ? <DollarSign className="h-4 w-4" /> : <span>0</span>}
-              </div>
-              <span className="text-xs font-medium">{calculationType === "pv" ? "Present Value" : "Start"}</span>
-              {calculationType === "pv" && result !== null && (
-                <span className="text-xs font-bold mt-1">{formatCurrency(result)}</span>
-              )}
-            </div>
-
-            {/* Period markers */}
-            {Array.from({ length: displayPeriods }).map((_, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="w-6 h-6 rounded-full bg-muted-foreground text-background flex items-center justify-center mb-2 text-xs">
-                  {index + 1}
+          {/* Timeline points */}
+          <div className="space-y-8">
+            {timelinePoints.map((point, index) => (
+              <div key={index} className="relative flex items-center">
+                <div className="absolute left-4 w-2 h-2 bg-primary rounded-full transform -translate-x-1/2" />
+                <div className="ml-8">
+                  <p className="font-medium">
+                    {point.paymentPosition === "present"
+                      ? "Present Value"
+                      : point.paymentPosition === "future"
+                        ? "Future Value"
+                        : `Period ${point.period} (${point.paymentPosition === "beginning" ? "Beginning" : "End"})`}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {point.paymentPosition === "present" || point.paymentPosition === "future"
+                      ? formatCurrency(point.payment)
+                      : `Payment: ${formatCurrency(point.payment)}`}
+                  </p>
                 </div>
-                <span className="text-xs">Period {index + 1}</span>
-                <span className="text-xs font-bold mt-1">{formatCurrency(payment)}</span>
               </div>
             ))}
 
-            {/* Ending point */}
-            <div className="flex flex-col items-center">
-              <div
-                className={cn(
-                  "w-8 h-8 rounded-full flex items-center justify-center mb-2",
-                  calculationType === "fv" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
-                )}
-              >
-                {calculationType === "fv" ? <DollarSign className="h-4 w-4" /> : <span>{periods}</span>}
+            {periods > 10 && (
+              <div className="relative flex items-center">
+                <div className="absolute left-4 w-2 h-2 bg-primary rounded-full transform -translate-x-1/2" />
+                <div className="ml-8">
+                  <p className="font-medium text-muted-foreground">...</p>
+                  <p className="text-sm text-muted-foreground">{periods - 10} more periods</p>
+                </div>
               </div>
-              <span className="text-xs font-medium">
-                {calculationType === "fv" ? "Future Value" : `Period ${periods}`}
-              </span>
-              {calculationType === "fv" && result !== null && (
-                <span className="text-xs font-bold mt-1">{formatCurrency(result)}</span>
-              )}
-            </div>
-          </div>
-
-          {/* Show ellipsis if not showing all periods */}
-          {!showingAllPeriods && (
-            <div className="mt-4 text-center text-sm text-muted-foreground">
-              <span>
-                Showing {displayPeriods} of {periods} periods
-              </span>
-            </div>
-          )}
-
-          {/* Payment direction arrows */}
-          <div className="mt-6 flex items-center justify-center text-sm text-muted-foreground">
-            <span>Payments of {formatCurrency(payment)} made at the end of each period</span>
-            <ArrowRight className="ml-2 h-4 w-4" />
+            )}
           </div>
         </div>
       </CardContent>

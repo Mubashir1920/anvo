@@ -1,4 +1,4 @@
-import { OrdinaryAnnuity } from "@/components/ordinary-annuity"
+import { OrdinaryAnnuity } from "@/components/annuity"
 
 export default function Home() {
     return (
