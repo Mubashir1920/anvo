@@ -33,7 +33,7 @@ export default function Home() {
         <div className="grid grid-cols-1 grid-flow-row lg:grid-cols-3 gap-5 lg:gap-2">
           {/* Future Value Calculator Box */}
           <Link href='/future-value'>
-            <div className="border relative cursor-pointer shadow-sm group dark:hover:bg-green-950/70  duration-200   hover:border-green-300 hover:bg-green-50 dark:hover:border-green-800   rounded-sm p-5 text-left  " >
+            <div className="border relative  cursor-pointer shadow-sm group dark:hover:bg-green-950/70  duration-200   hover:border-green-300 hover:bg-green-50 dark:hover:border-green-800   rounded-sm p-5 text-left  " >
               <h3 className="font-semibold " >
                 Future Value Finder
               </h3>
@@ -43,7 +43,7 @@ export default function Home() {
           </Link>
           {/* Present Value Calculator Box */}
           <Link href='/present-value'>
-            <div className="border relative group cursor-pointer shadow-sm duration-200    hover:border-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/50 dark:hover:border-purple-950   rounded-sm p-5 text-left" >
+            <div className="border relative  group cursor-pointer shadow-sm duration-200    hover:border-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/50 dark:hover:border-purple-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
                 Present Value Finder
               </h3>
@@ -53,7 +53,7 @@ export default function Home() {
           </Link>
           {/* Irregular Payment Stream Calculator */}
           <Link href='/irregular-calculator'>
-            <div className="border relative group cursor-pointer  shadow-sm duration-200   hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/50 dark:hover:border-red-950   rounded-sm p-5 text-left" >
+            <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/50 dark:hover:border-red-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
                 Irregular Payment Stream
               </h3>
@@ -63,7 +63,7 @@ export default function Home() {
           </Link>
           {/*  Annuity Calculator */}
           <Link href='/annuity-calculator'>
-            <div className="border relative group cursor-pointer  shadow-sm duration-200   hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 dark:hover:border-blue-950   rounded-sm p-5 text-left" >
+            <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 dark:hover:border-blue-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
                 Annuity Calculator
               </h3>

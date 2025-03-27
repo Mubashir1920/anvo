@@ -36,12 +36,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <Head>
         <GoogleAnalytics />
       </Head>
       <body
-        className={`${poppins.variable} font-poppins dark:bg-black transition-colors duration-100 flex flex-col min-h-screen  antialiased`}
+        className={`${poppins.variable} font-poppins dark:bg-black dark:text-foreground transition-colors duration-100 flex flex-col min-h-screen  antialiased`}
       >
         <Navbar />
         {children}

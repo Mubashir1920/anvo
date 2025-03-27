@@ -22,8 +22,8 @@ const FeedbackForm = () => {
         <form action={formAction} >
             <ul className="grid  md:w-[400px] md:p-4">
                 <Label className="mb-2">Write Your Feedback/Ideas Here .</Label>
-                <Textarea  name="feedback" required />
-                <Button className="mt-2 disabled:opacity-65 " type="submit"   aria-disabled={pending}>
+                <Textarea name="feedback" required />
+                <Button className="mt-2 disabled:opacity-65 " type="submit" disabled={pending} aria-disabled={pending}>
                     Send Feedback
                 </Button>
                 <p>

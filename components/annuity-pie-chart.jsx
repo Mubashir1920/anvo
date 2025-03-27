@@ -1,8 +1,10 @@
+"use client"
+
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
-export function AnnuityPieChart({ principal, payments, interest, calculationType }) {
+export function AnnuityPieChart({ principal = 0, payments = 0, interest = 0, calculationType = "standard" }) {
   // Ensure all values are positive for the chart
   const principalValue = Math.max(0, principal)
   const paymentsValue = Math.max(0, payments)
@@ -36,6 +38,9 @@ export function AnnuityPieChart({ principal, payments, interest, calculationType
     return <p className="text-center text-muted-foreground">No data to display</p>
   }
 
+  // Define chart colors directly
+  const CHART_COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"]
+
   return (
     <Card>
       <CardContent className="pt-6">
@@ -43,15 +48,15 @@ export function AnnuityPieChart({ principal, payments, interest, calculationType
           config={{
             principal: {
               label: "Principal",
-              color: "hsl(var(-chart-1))",
+              color: CHART_COLORS[0],
             },
             payments: {
               label: "Payments",
-              color: "hsl(var(-chart-2))",
+              color: CHART_COLORS[1],
             },
             interest: {
               label: "Interest",
-              color: "hsl(var(-chart-3))",
+              color: CHART_COLORS[2],
             },
           }}
           className="h-80"
@@ -64,15 +69,13 @@ export function AnnuityPieChart({ principal, payments, interest, calculationType
                 cy="50%"
                 labelLine={false}
                 outerRadius={80}
-                fill="#8884d8"
                 dataKey="value"
                 nameKey="name"
                 label={({ name, percent }) => `${name}: ${percent}%`}
               >
-                {data.map((entry, index) => {
-                  const colors = ["var(--color-principal)", "var(--color-payments)", "var(--color-interest)"]
-                  return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-                })}
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+                ))}
               </Pie>
               <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
             </PieChart>
@@ -85,10 +88,7 @@ export function AnnuityPieChart({ principal, payments, interest, calculationType
               <div className="flex items-center gap-2">
                 <div
                   className="h-3 w-3 rounded-full"
-                  style={{
-                    backgroundColor:
-                      index === 0 ? "hsl(var(--chart-1))" : index === 1 ? "hsl(var(--chart-2))" : "hsl(var(--chart-3))",
-                  }}
+                  style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }}
                 />
                 <span className="text-sm font-medium">{item.name}</span>
               </div>

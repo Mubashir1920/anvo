@@ -1,4 +1,6 @@
-import { OrdinaryAnnuity } from "@/components/annuity"
+import { AnnuityCalculator } from "@/components/annuity"
+
+
 export const metadata = {
     title: "Annuity Calculator - Anvo",
     description: "Calculate present and future values of your ordinary annuity or annuity due with our financial calculator.",
@@ -15,10 +17,7 @@ export const metadata = {
 export default function Home() {
     return (
         <main className="container mx-auto py-20 px-4">
-            <h1 className="text-3xl font-bold text-center mb-8">Financial Calculator</h1>
-            <div className="max-w-2xl mx-auto">
-                <OrdinaryAnnuity />
-            </div>
+            <AnnuityCalculator />
         </main>
     )
 }

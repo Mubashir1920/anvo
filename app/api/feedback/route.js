@@ -11,8 +11,10 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-    // Save feedback to database (Replace with your actual DB logic)
-    // await db.feedback.create({ data: { text: feedback } });
+    await fetch(`${process.env.FIREBASE_URL}/feedback.json`, {
+      method: "POST",
+      body: JSON.stringify({ Feedback: feedback }),
+    });
 
     return NextResponse.json(
       { message: "Feedback submitted successfully" },
