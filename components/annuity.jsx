@@ -111,8 +111,8 @@ export function AnnuityCalculator() {
 
   return (
     <div>
-      <h1 className="my-4 text-xl font-semibold"> Annuity Calculator </h1>
-      <div className="grid grid-cols-2 gap-5 ">
+      <h1 className="my-4 text-xl font-semibold">Annuity Calculator</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Tabs
           defaultValue="pv"
           className="col-span-1"
@@ -152,7 +152,7 @@ export function AnnuityCalculator() {
                       setPvResult(null)
                       setShowPvTimeline(false)
                     }}
-                    className="flex space-x-4"
+                    className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="ordinary" id="pv-ordinary" />
@@ -215,13 +215,14 @@ export function AnnuityCalculator() {
                   />
                 </div>
 
-                <Button onClick={calculatePV} className="w-full">
-                  Calculate Present Value
-                </Button>
-
-                <Button onClick={resetPV} variant="outline" className="w-full mt-2">
-                  Reset Values
-                </Button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button onClick={calculatePV} className="w-full">
+                    Calculate Present Value
+                  </Button>
+                  <Button onClick={resetPV} variant="outline" className="w-full">
+                    Reset Values
+                  </Button>
+                </div>
 
                 <div className="pt-4 border-t">
                   <div className="flex items-center justify-between">
@@ -261,7 +262,7 @@ export function AnnuityCalculator() {
                       setFvResult(null)
                       setShowFvTimeline(false)
                     }}
-                    className="flex space-x-4"
+                    className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="ordinary" id="fv-ordinary" />
@@ -324,13 +325,14 @@ export function AnnuityCalculator() {
                   />
                 </div>
 
-                <Button onClick={calculateFV} className="w-full">
-                  Calculate Future Value
-                </Button>
-
-                <Button onClick={resetFV} variant="outline" className="w-full mt-2">
-                  Reset Values
-                </Button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Button onClick={calculateFV} className="w-full">
+                    Calculate Future Value
+                  </Button>
+                  <Button onClick={resetFV} variant="outline" className="w-full">
+                    Reset Values
+                  </Button>
+                </div>
 
                 <div className="pt-4 border-t">
                   <div className="flex items-center justify-between">
@@ -348,9 +350,9 @@ export function AnnuityCalculator() {
             </Card>
           </TabsContent>
         </Tabs>
-        <div className="col-span-1 border-gray-200 border rounded-md ">
+        <div className="col-span-1  px-4 py-4 border rounded-md">
           {showPvTimeline && (
-            <div className="mt-6  ">
+            <div className="mt-2">
               <h3 className="text-lg font-medium mb-4">Payment Timeline</h3>
               <PaymentTimeline
                 payment={pvPayment}
@@ -362,7 +364,7 @@ export function AnnuityCalculator() {
             </div>
           )}
           {fvResult !== null && (
-            <div className="mt-6">
+            <div className="mt-2">
               <h3 className="text-lg font-medium mb-4">Value Breakdown</h3>
               <AnnuityPieChart
                 principal={fvPrincipal * Math.pow(1 + fvRate / 100, fvPeriods)}
@@ -374,7 +376,7 @@ export function AnnuityCalculator() {
           )}
 
           {showFvTimeline && (
-            <div className="mt-6">
+            <div className="mt-2">
               <h3 className="text-lg font-medium mb-4">Payment Timeline</h3>
               <PaymentTimeline
                 payment={fvPayment}
@@ -383,6 +385,14 @@ export function AnnuityCalculator() {
                 result={fvResult}
                 annuityType={fvAnnuityType}
               />
+            </div>
+          )}
+
+          {!showPvTimeline && !showFvTimeline && (
+            <div className="flex items-center justify-center h-full">
+              <p className="text-muted-foreground text-center">
+                Enter your values and calculate to see the payment timeline and value breakdown.
+              </p>
             </div>
           )}
         </div>

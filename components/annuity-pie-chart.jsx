@@ -42,8 +42,8 @@ export function AnnuityPieChart({ principal = 0, payments = 0, interest = 0, cal
   const CHART_COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"]
 
   return (
-    <Card>
-      <CardContent className="pt-6">
+    <Card className="w-full overflow-hidden">
+      <CardContent className="pt-6 px-2 sm:px-6">
         <ChartContainer
           config={{
             principal: {
@@ -59,32 +59,40 @@ export function AnnuityPieChart({ principal = 0, payments = 0, interest = 0, cal
               color: CHART_COLORS[2],
             },
           }}
-          className="h-80"
+          className="h-60 sm:h-80 w-full"
         >
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
+            <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
               <Pie
                 data={data}
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={80}
+                outerRadius={({ viewBox }) => Math.min(viewBox.width, viewBox.height) / 3}
                 dataKey="value"
                 nameKey="name"
-                label={({ name, percent }) => `${name}: ${percent}%`}
+                label={({ name, percent }) => `${percent}%`}
               >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                 ))}
               </Pie>
-              <ChartTooltip content={<ChartTooltipContent formatter={(value) => formatCurrency(Number(value))} />} />
+              <ChartTooltip
+                content={
+                  <ChartTooltipContent
+                    formatter={(value, name, props) => {
+                      return [name, ': ', formatCurrency(Number(value))]
+                    }}
+                  />
+                }
+              />
             </PieChart>
           </ResponsiveContainer>
         </ChartContainer>
 
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-2 sm:gap-4 md:grid-cols-3">
           {data.map((item, index) => (
-            <div key={index} className="flex flex-col items-center">
+            <div key={index} className="flex flex-col items-center text-center">
               <div className="flex items-center gap-2">
                 <div
                   className="h-3 w-3 rounded-full"
@@ -92,7 +100,7 @@ export function AnnuityPieChart({ principal = 0, payments = 0, interest = 0, cal
                 />
                 <span className="text-sm font-medium">{item.name}</span>
               </div>
-              <span className="text-lg font-bold">{formatCurrency(item.value)}</span>
+              <span className="text-lg font-bold break-all">{formatCurrency(item.value)}</span>
               <span className="text-sm text-muted-foreground">{item.percent}%</span>
             </div>
           ))}
