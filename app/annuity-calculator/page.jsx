@@ -9,8 +9,8 @@ export const metadata = {
         title: "Annuity Calculator - Anvo",
         description: "Calculate present and future values of your ordinary annuity or annuity due with our financial calculator.",
         type: "website",
-        url: "https://yourwebsite.com/annuity-calculator",
-        images: [{ url: "https://yourwebsite.com/og-image.jpg", width: 1200, height: 630, alt: "Annuity Calculator" }]
+        url: "https://anvo.vercel.app/annuity-calculator",
+        images: [{ url: "https://anvo.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Annuity Calculator" }]
     }
 };
 

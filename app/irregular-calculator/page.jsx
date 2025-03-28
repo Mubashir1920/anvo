@@ -8,8 +8,8 @@ export const metadata = {
         title: "Irregular Cash Flow Calculator - Anvo",
         description: "Calculate the present and future value of an unequal stream of payments with our financial calculator.",
         type: "website",
-        url: "https://yourwebsite.com/irregular-cash-flow-calculator",
-        images: [{ url: "https://yourwebsite.com/og-image.jpg", width: 1200, height: 630, alt: "Irregular Cash Flow Calculator" }]
+        url: "https://anvo.vercel.app/irregular-cash-flow-calculator",
+        images: [{ url: "https://anvo.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Irregular Cash Flow Calculator" }]
     }
 };
 

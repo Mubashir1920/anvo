@@ -9,8 +9,8 @@ export const metadata = {
         title: "Future Value Calculator - Anvo",
         description: "Easily calculate the future value of your principal amount with  financial calculator.",
         type: "website",
-        url: "https://yourwebsite.com/future-value",
-        images: [{ url: "https://yourwebsite.com/og-image.jpg", width: 1200, height: 630, alt: "Future Value Calculator" }]
+        url: "https://anvo.vercel.app/future-value",
+        images: [{ url: "https://anvo.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Future Value Calculator" }]
     }
 };
 

@@ -9,8 +9,8 @@ export const metadata = {
         title: "Present Value Calculator - Anvo",
         description: "Easily calculate the present value of your future amount with our  financial calculator.",
         type: "website",
-        url: "https://yourwebsite.com/present-value",
-        images: [{ url: "https://yourwebsite.com/og-image.jpg", width: 1200, height: 630, alt: "Present Value Calculator" }]
+        url: "https://anvo.vercel.app/present-value",
+        images: [{ url: "https://anvo.vercel.app/og-image.jpg", width: 1200, height: 630, alt: "Present Value Calculator" }]
     }
 };
 
