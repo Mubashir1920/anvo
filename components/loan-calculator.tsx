@@ -18,7 +18,7 @@ interface Payment {
 }
 
 export default function LoanCalculator() {
-  const [loanAmount, setLoanAmount] = useState(10000)
+  const [loanAmount, setLoanAmount] = useState(5000)
   const [interestRate, setInterestRate] = useState(5)
   const [loanTerm, setLoanTerm] = useState(5)
   const [payments, setPayments] = useState<Payment[]>([])
@@ -29,7 +29,7 @@ export default function LoanCalculator() {
   const [visiblePayments, setVisiblePayments] = useState<Payment[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [paymentFrequency, setPaymentFrequency] = useState<"monthly" | "quarterly" | "semiannually" | "annually">(
-    "monthly",
+    "quarterly",
   )
 
   const getPaymentsPerPage = () => {
@@ -141,211 +141,219 @@ export default function LoanCalculator() {
   }
 
   return (
-    <div className="space-y-8 pt-20 ">
-      <Card>
-        <CardHeader>
-          <CardTitle>Loan Details</CardTitle>
-          <CardDescription>Enter your loan information to calculate the amortization schedule</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 sm:grid-cols-3">
-            <div className="space-y-2">
-              <Label htmlFor="loanAmount">Loan Amount ($)</Label>
-              <Input
-                id="loanAmount"
-                type="number"
-                value={loanAmount}
-                onChange={(e) => setLoanAmount(Number(e.target.value))}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="interestRate">Interest Rate (%)</Label>
-              <Input
-                id="interestRate"
-                type="number"
-                step="0.01"
-                value={interestRate}
-                onChange={(e) => setInterestRate(Number(e.target.value))}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="loanTerm">Loan Term (years)</Label>
-              <Input
-                id="loanTerm"
-                type="number"
-                value={loanTerm}
-                onChange={(e) => setLoanTerm(Number(e.target.value))}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-3">
-              <Label>Payment Frequency</Label>
-              <RadioGroup
-                value={paymentFrequency}
-                onValueChange={(value) =>
-                  setPaymentFrequency(value as "monthly" | "quarterly" | "semiannually" | "annually")
-                }
-                className="flex flex-wrap gap-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="monthly" id="monthly" />
-                  <Label htmlFor="monthly">Monthly</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="quarterly" id="quarterly" />
-                  <Label htmlFor="quarterly">Quarterly</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="semiannually" id="semiannually" />
-                  <Label htmlFor="semiannually">Semi-annually</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="annually" id="annually" />
-                  <Label htmlFor="annually">Annually</Label>
-                </div>
-              </RadioGroup>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <div className=" grid grid-cols-4  gap-5 pt-20 ">
+      <div className="space-y-8 col-span-4 lg:col-span-2 " >
 
-      <div className="grid gap-6 md:grid-cols-3">
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle>
-              {paymentFrequency === "monthly"
-                ? "Monthly"
-                : paymentFrequency === "quarterly"
-                  ? "Quarterly"
-                  : paymentFrequency === "semiannually"
-                    ? "Semi-annual"
-                    : "Annual"}{" "}
-              Payment
-            </CardTitle>
+          <CardHeader>
+            <CardTitle>Loan Details</CardTitle>
+            <CardDescription>Enter your loan information to calculate the amortization schedule</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{formatCurrency(monthlyPayment)}</p>
+            <div className="grid gap-6 sm:grid-cols-3">
+              <div className="space-y-2">
+                <Label htmlFor="loanAmount">Loan Amount ($)</Label>
+                <Input
+                  id="loanAmount"
+                  type="number"
+                  value={loanAmount}
+                  onChange={(e) => setLoanAmount(Number(e.target.value))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="interestRate">Interest Rate (%)</Label>
+                <Input
+                  id="interestRate"
+                  type="number"
+                  step="0.01"
+                  value={interestRate}
+                  onChange={(e) => setInterestRate(Number(e.target.value))}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="loanTerm">Loan Term (years)</Label>
+                <Input
+                  id="loanTerm"
+                  type="number"
+                  value={loanTerm}
+                  onChange={(e) => setLoanTerm(Number(e.target.value))}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-3">
+                <Label>Payment Frequency</Label>
+                <RadioGroup
+                  value={paymentFrequency}
+                  onValueChange={(value) =>
+                    setPaymentFrequency(value as "monthly" | "quarterly" | "semiannually" | "annually")
+                  }
+                  className="flex flex-wrap gap-4"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="monthly" id="monthly" />
+                    <Label htmlFor="monthly">Monthly</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="quarterly" id="quarterly" />
+                    <Label htmlFor="quarterly">Quarterly</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="semiannually" id="semiannually" />
+                    <Label htmlFor="semiannually">Semi-annually</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="annually" id="annually" />
+                    <Label htmlFor="annually">Annually</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
           </CardContent>
         </Card>
+
+        <div className="grid gap-2 md:grid-cols-3">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle>
+                {paymentFrequency === "monthly"
+                  ? "Monthly"
+                  : paymentFrequency === "quarterly"
+                    ? "Quarterly"
+                    : paymentFrequency === "semiannually"
+                      ? "Semi-annual"
+                      : "Annual"}{" "}
+                Payment
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{formatCurrency(monthlyPayment)}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle>Total Interest</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{formatCurrency(totalInterest)}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle>Total Payments</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">{formatCurrency(totalPayments)}</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      <div className=" col-span-4 lg:col-span-2"  >
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle>Total Interest</CardTitle>
+          <CardHeader>
+            <CardTitle>Payment Breakdown - All Periods</CardTitle>
+            <CardDescription>Visualization of principal vs interest payments over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{formatCurrency(totalInterest)}</p>
+            <div className="h-[300px]">
+              <ChartContainer
+                config={{
+                  principal: {
+                    label: "Principal",
+                    color: "var(--chart-2)",
+                  },
+                  interest: {
+                    label: "Interest",
+                    color: "var(--destructive)",
+                  },
+                }}
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={chartData}
+                    margin={{
+                      top: 20,
+                      right: 30,
+                      left: 20,
+                      bottom: 60,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="name"
+                      angle={-90}
+                      textAnchor="end"
+                      height={80}
+                      interval={Math.max(Math.floor(payments.length / 20), 0)} // Show fewer x-axis labels for readability
+                      tick={{ fontSize: 10 }}
+                    />
+                    <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
+                    <Tooltip formatter={(value) => formatCurrency(Number(value))} />
+                    <Legend />
+                    <Bar dataKey="principal" stackId="a" fill="var(--color-principal)" name="Principal" />
+                    <Bar dataKey="interest" stackId="a" fill="var(--color-interest)" name="Interest" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </div>
           </CardContent>
         </Card>
+
+      </div>
+      <div className="col-span-4" >
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle>Total Payments</CardTitle>
+          <CardHeader>
+            <CardTitle>Amortization Schedule</CardTitle>
+            <CardDescription>
+              Showing payments {(currentPage - 1) * paymentsPerPage + 1} to{" "}
+              {Math.min(currentPage * paymentsPerPage, payments.length)} of {payments.length}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{formatCurrency(totalPayments)}</p>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Payment #</TableHead>
+                    <TableHead>Payment Amount</TableHead>
+                    <TableHead>Principal</TableHead>
+                    <TableHead>Interest</TableHead>
+                    <TableHead>Remaining Balance</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {visiblePayments.map((payment) => (
+                    <TableRow key={payment.paymentNumber}>
+                      <TableCell>{payment.paymentNumber}</TableCell>
+                      <TableCell>{formatCurrency(payment.paymentAmount)}</TableCell>
+                      <TableCell>{formatCurrency(payment.principalPaid)}</TableCell>
+                      <TableCell>{formatCurrency(payment.interestPaid)}</TableCell>
+                      <TableCell>{formatCurrency(payment.remainingBalance)}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+            <div className="flex justify-between mt-4">
+              <Button variant="outline" onClick={handlePrevPage} disabled={currentPage === 1}>
+                Previous
+              </Button>
+              <div className="flex items-center space-x-2">
+                <span>
+                  Page {currentPage} of {Math.ceil(payments.length / paymentsPerPage)}
+                </span>
+              </div>
+              <Button
+                variant="outline"
+                onClick={handleNextPage}
+                disabled={currentPage >= Math.ceil(payments.length / paymentsPerPage)}
+              >
+                Next
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Payment Breakdown - All Periods</CardTitle>
-          <CardDescription>Visualization of principal vs interest payments over time</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[400px]">
-            <ChartContainer
-              config={{
-                principal: {
-                  label: "Principal",
-                  color: "var(--chart-2)",
-                },
-                interest: {
-                  label: "Interest",
-                  color: "var(--destructive)",
-                },
-              }}
-            >
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={chartData}
-                  margin={{
-                    top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 60,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis
-                    dataKey="name"
-                    angle={-90}
-                    textAnchor="end"
-                    height={80}
-                    interval={Math.max(Math.floor(payments.length / 20), 0)} // Show fewer x-axis labels for readability
-                    tick={{ fontSize: 10 }}
-                  />
-                  <YAxis tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
-                  <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-                  <Legend />
-                  <Bar dataKey="principal" stackId="a" fill="var(--color-principal)" name="Principal" />
-                  <Bar dataKey="interest" stackId="a" fill="var(--color-interest)" name="Interest" />
-                </BarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
-          </div>
-        </CardContent>
-      </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Amortization Schedule</CardTitle>
-          <CardDescription>
-            Showing payments {(currentPage - 1) * paymentsPerPage + 1} to{" "}
-            {Math.min(currentPage * paymentsPerPage, payments.length)} of {payments.length}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Payment #</TableHead>
-                  <TableHead>Payment Amount</TableHead>
-                  <TableHead>Principal</TableHead>
-                  <TableHead>Interest</TableHead>
-                  <TableHead>Remaining Balance</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {visiblePayments.map((payment) => (
-                  <TableRow key={payment.paymentNumber}>
-                    <TableCell>{payment.paymentNumber}</TableCell>
-                    <TableCell>{formatCurrency(payment.paymentAmount)}</TableCell>
-                    <TableCell>{formatCurrency(payment.principalPaid)}</TableCell>
-                    <TableCell>{formatCurrency(payment.interestPaid)}</TableCell>
-                    <TableCell>{formatCurrency(payment.remainingBalance)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-          <div className="flex justify-between mt-4">
-            <Button variant="outline" onClick={handlePrevPage} disabled={currentPage === 1}>
-              Previous
-            </Button>
-            <div className="flex items-center space-x-2">
-              <span>
-                Page {currentPage} of {Math.ceil(payments.length / paymentsPerPage)}
-              </span>
-            </div>
-            <Button
-              variant="outline"
-              onClick={handleNextPage}
-              disabled={currentPage >= Math.ceil(payments.length / paymentsPerPage)}
-            >
-              Next
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }

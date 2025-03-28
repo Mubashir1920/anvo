@@ -28,6 +28,7 @@ const MobileNav = () => {
     const [isShow, setIsShow] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
     const navRef = useRef()
+    const navItem = useRef()
 
     useEffect(() => {
         document.body.style.overflow = isShow ? "hidden" : "auto";
@@ -89,7 +90,7 @@ const MobileNav = () => {
             </div>
             {/* Submenus */}
             {["isCalculators", "isAnnuity", "isFeedback"].map((menu) => (
-                <div
+                <div ref={navItem}
                     key={menu}
                     className={`fixed top-0 right-0 w-[70vw]  bg-white h-[100dvh] dark:bg-black p-10 border z-[160] transition-transform duration-300 ${activeMenu === menu ? "translate-x-0" : "translate-x-full"}`}
                 >

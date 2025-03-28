@@ -16,7 +16,7 @@ export const metadata = {
 
 const page = () => {
     return (
-        <main className="container flex-grow   mx-auto flex items-start  pt-5">
+        <main className="container flex  flex-grow flex-col mx-auto  pt-5">
             <LoanCalculator />
         </main>
     )

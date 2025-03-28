@@ -56,7 +56,7 @@ const FV = () => {
                         </div>
 
                         <div className="grid w-full max-w-full items-center gap-1.5">
-                            <Label htmlFor="periodType">Period Type</Label>
+                            <Label htmlFor="periodType">Period Type(Compounding)  </Label>
                             <Select value={periodType} onValueChange={setPeriodType}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Frequency" />
