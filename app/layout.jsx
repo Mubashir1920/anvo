@@ -23,14 +23,14 @@ export const metadata = {
     title: "Anvo -  Financial Application",
     description: "AI-powered financial tools to assist with smarter decision-making.",
     type: "website",
-    url: "https://yourwebsite.com",
-    image: "https://yourwebsite.com/og-image.jpg",
+    url: "https://anvo.vercel.app",
+    image: "https://anvo.vercel.app/og-image.jpg",
   },
   twitter: {
     card: "summary_large_image",
     title: "Anvo -  Financial Application",
     description: "Smart AI-driven financial calculators for better decision-making.",
-    image: "https://yourwebsite.com/twitter-image.jpg",
+    image: "https://anvo.vercel.app/twitter-image.jpg",
   }
 };
 

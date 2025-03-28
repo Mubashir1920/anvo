@@ -1,7 +1,5 @@
 
 import Link from "next/link"
-
-
 import { cn } from "@/lib/utils"
 import {
     NavigationMenu,
@@ -38,7 +36,7 @@ export function Navbar() {
                         <NavigationMenuItem>
                             <NavigationMenuTrigger className='bg-transparent' >Calculators</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className=" grid w-[300px] gap-3 p-4   ">
+                                <ul className=" grid w-[300px]  gap-3 p-4   ">
                                     <Link href="/future-value" passHref legacyBehavior>
                                         <ListItem title="Future Value">
                                             Calculate Future Value of Principal
@@ -52,6 +50,11 @@ export function Navbar() {
                                     <Link href="/irregular-calculator" passHref legacyBehavior>
                                         <ListItem title="Irregular Payment Stream">
                                             Calculate Present/Future Value
+                                        </ListItem>
+                                    </Link>
+                                    <Link href="/loan-calculator" passHref legacyBehavior>
+                                        <ListItem title="Loan Calculator">
+                                            Ammortization Scheduler with Charts
                                         </ListItem>
                                     </Link>
                                 </ul>

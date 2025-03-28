@@ -8,7 +8,7 @@ export const metadata = {
   openGraph: {
     title: "Financial Calculators | Smart Decision Making",
     description: " financial tools to help you calculate and make informed financial decisions.",
-    url: "https://yourwebsite.com/",
+    url: "https://anvo.vercel.app",
     type: "website",
   },
 };
@@ -21,13 +21,13 @@ export default function Home() {
       <div className="py-8 text-center ">
 
         <div className="overflow-hidden" >
-          <h1 className="mb-4 text-4xl motion-opacity-in-0 motion-translate-y-in-[96%] motion-blur-in-md font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          <h1 className="mb-4 text-4xl  font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Take Decisions Smartly
             <br />
             With Financial Calulators
           </h1>
         </div>
-        <p className="mb-8 text-lg  text-gray-500 dark:text-primary lg:text-xl sm:px-16 xl:px-48 motion-opacity-in-0 motion-translate-y-in-[96%] motion-blur-in-md motion-delay-300 ">
+        <p className="mb-8 text-lg  text-gray-500 dark:text-primary lg:text-xl sm:px-16 xl:px-48">
           Tools That Help to Calculate and take decision rationally and smartly.
         </p>
         <div className="grid grid-cols-1 grid-flow-row lg:grid-cols-3 gap-5 lg:gap-2">
@@ -69,6 +69,16 @@ export default function Home() {
               </h3>
               <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Calculate Present and Future Values of your Ordinary or Annuity Due</p>
               <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+            </div>
+          </Link>
+          <Link href='/loan-calculator'>
+            <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-pink-300 hover:bg-pink-50 dark:hover:bg-pink-950/50 dark:hover:border-pink-950   rounded-sm p-5 text-left" >
+              <h3 className="font-semibold " >
+                Loan Calculator
+              </h3>
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Analyze the Loan Amounts ,The interest with graph and tables</p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+              <span className="absolute top-3 right-3 py-1 px-2 bg-red-200 dark:text-black text-[10px]" >New!</span>
             </div>
           </Link>
         </div>

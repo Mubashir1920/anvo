@@ -16,9 +16,9 @@ export const metadata = {
 
 export default function Home() {
     return (
-        <div className="container flex-grow   mx-auto flex items-start  pt-5">
+        <main className="container flex-grow   mx-auto flex items-start  pt-5">
             {/* Calulate the Future Value of Principal Amount */}
             <FV />
-        </div>
+        </main>
     );
 }

@@ -14,6 +14,7 @@ const calculators = [
     { route: "/future-value", name: "Future Value" },
     { route: "/present-value", name: "Present Value" },
     { route: "/irregular-calculator", name: "Irregular Payments" },
+    { route: "/loan-calculator", name: "Loan Calculator" },
 ];
 
 const annuities = [
@@ -26,14 +27,28 @@ const MobileNav = () => {
 
     const [isShow, setIsShow] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
+    const navRef = useRef()
 
     useEffect(() => {
-        if (isShow) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        document.body.style.overflow = isShow ? "hidden" : "auto";
     }, [isShow]);
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (navRef.current && !navRef.current.contains(e.target)) {
+                setIsShow(false);
+                setActiveMenu(null);
+            }
+        };
+
+        if (isShow) {
+            document.addEventListener("click", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [isShow])
+
 
 
     return (
@@ -43,8 +58,9 @@ const MobileNav = () => {
                     onClick={() => setIsShow(prev => true)}
                     className={` cursor-pointer  `}
                 />
-                <div
-                    className={`${isShow ? 'translate-x-0  ' : '  translate-x-full'} bg-white border p-15 fixed -top-0 -right-0  dark:bg-black  w-[70vw] h-[100dvh] z-[150]  transition-all duration-300 `}
+                <div className={`${isShow ? 'block' : 'hidden'}  fixed w-full h-[100dvh] top-0 right-0 z-[140] bg-black/30 `} ></div>
+                <div ref={navRef}
+                    className={`${isShow ? 'translate-x-0  ' : '  translate-x-full'} bg-white border p-15 fixed top-0 right-0  dark:bg-black  w-[70vw] h-[100dvh] z-[150]  transition-all duration-300 `}
                 >
                     <X
                         onClick={() => setIsShow(prev => false)}
@@ -75,7 +91,7 @@ const MobileNav = () => {
             {["isCalculators", "isAnnuity", "isFeedback"].map((menu) => (
                 <div
                     key={menu}
-                    className={`fixed top-0 right-0 w-[70vw]  bg-white h-[100dvh] dark:bg-black p-10 border z-[160] transition-transform duration-300 ${activeMenu === menu ? "translate-x-0" : "blur-md translate-x-full"}`}
+                    className={`fixed top-0 right-0 w-[70vw]  bg-white h-[100dvh] dark:bg-black p-10 border z-[160] transition-transform duration-300 ${activeMenu === menu ? "translate-x-0" : "translate-x-full"}`}
                 >
                     <span className="absolute left-5 top-10 flex items-center gap-2 cursor-pointer" onClick={() => setActiveMenu(null)}>
                         <ChevronLeft /> <h3>{menu.replace("is", "")}</h3>
