@@ -39,7 +39,6 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <Head>
         <GoogleAnalytics />
-        <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GA_VERIFICATION} />
       </Head>
       <body
         className={`${poppins.variable} font-poppins dark:bg-black dark:text-foreground transition-colors duration-100 flex flex-col min-h-screen  antialiased`}
