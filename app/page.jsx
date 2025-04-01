@@ -22,63 +22,73 @@ export default function Home() {
 
         <div className="overflow-hidden" >
           <h1 className="mb-4 text-4xl  font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Take Decisions Smartly
+            Know Before You Act
             <br />
-            With Financial Calulators
+            Use Smart Calculators
           </h1>
         </div>
         <p className="mb-8 text-lg  text-gray-500 dark:text-primary lg:text-xl sm:px-16 xl:px-48">
-          Tools That Help to Calculate and take decision rationally and smartly.
+          One small calculation today could save you thousands tomorrow!
         </p>
         <div className="grid grid-cols-1 grid-flow-row lg:grid-cols-3 gap-5 lg:gap-2">
           {/* Future Value Calculator Box */}
           <Link href='/future-value'>
             <div className="border relative  cursor-pointer shadow-sm group dark:hover:bg-green-950/70  duration-200   hover:border-green-300 hover:bg-green-50 dark:hover:border-green-800   rounded-sm p-5 text-left  " >
               <h3 className="font-semibold " >
-                Future Value Finder
+                Future Value Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400 text-sm" >Easily Calculate the Future Value of Your Principal Amount </p>
-              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+              <p className="text-gray-500 dark:group-hover:text-gray-400 text-sm" >
+                Effortlessly calculate the future value of your principal amount!
+              </p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:right-2 group-hover:top-2 duration-300 " />
             </div>
           </Link>
           {/* Present Value Calculator Box */}
           <Link href='/present-value'>
             <div className="border relative  group cursor-pointer shadow-sm duration-200    hover:border-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/50 dark:hover:border-purple-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
-                Present Value Finder
+                Present Value Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Easily Calculate the Present Value of Your Future Amount </p>
-              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >
+                Quickly find out the present value of your future amount with ease!
+              </p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:right-2 group-hover:top-2 duration-300 " />
             </div>
           </Link>
           {/* Irregular Payment Stream Calculator */}
           <Link href='/irregular-calculator'>
             <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/50 dark:hover:border-red-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
-                Irregular Payment Stream
+                Irregular Payment Stream Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Easily Calculate Value of Your Irregular Payment Streams</p>
-              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >
+                Quickly calculate the value of your irregular payment streams with ease!
+              </p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:right-2 group-hover:top-2 duration-300 " />
             </div>
           </Link>
           {/*  Annuity Calculator */}
           <Link href='/annuity-calculator'>
             <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 dark:hover:border-blue-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
-                Annuity Calculator
+                Annuity Value Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Calculate Present and Future Values of your Ordinary or Annuity Due</p>
-              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >
+                Easily calculate the present and future values of your ordinary annuity or annuity due!
+              </p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:right-2 group-hover:top-2 duration-300 " />
             </div>
           </Link>
           <Link href='/loan-calculator'>
             <div className="border relative  group cursor-pointer  shadow-sm duration-200   hover:border-pink-300 hover:bg-pink-50 dark:hover:bg-pink-950/50 dark:hover:border-pink-950   rounded-sm p-5 text-left" >
               <h3 className="font-semibold " >
-                Loan Calculator
+                Loan Amount & Interest Calculator
               </h3>
-              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >Analyze the Loan Amounts ,The interest with graph and tables</p>
-              <ArrowUpRight size={22} className="absolute right-3 top-3 group-hover:scale-105 duration-300 " />
-              <span className="absolute top-3 right-3 py-1 px-2 bg-red-200 dark:text-black text-[10px]" >New!</span>
+              <p className="text-gray-500 dark:group-hover:text-gray-400  text-sm" >
+                Analyze loan amounts and interest effortlessly with interactive graphs and tables!
+              </p>
+              <ArrowUpRight size={22} className="absolute right-3 top-3  group-hover:right-2 group-hover:top-2 duration-300 " />
+              {/* <span className="absolute top-3 right-3 py-1 px-2 bg-red-200 dark:text-black text-[10px]" >New!</span> */}
             </div>
           </Link>
         </div>

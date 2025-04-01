@@ -1,6 +1,6 @@
 import { AlignJustify, ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import FeedbackForm from "./FeedbackForm"
 
 
@@ -27,28 +27,11 @@ const MobileNav = () => {
 
     const [isShow, setIsShow] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
-    const navRef = useRef()
-    const navItem = useRef()
 
     useEffect(() => {
         document.body.style.overflow = isShow ? "hidden" : "auto";
     }, [isShow]);
-    useEffect(() => {
-        const handleClickOutside = (e) => {
-            if (navRef.current && !navRef.current.contains(e.target)) {
-                setIsShow(false);
-                setActiveMenu(null);
-            }
-        };
 
-        if (isShow) {
-            document.addEventListener("click", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, [isShow])
 
 
 
@@ -60,8 +43,8 @@ const MobileNav = () => {
                     className={` cursor-pointer  `}
                 />
                 <div className={`${isShow ? 'block' : 'hidden'}  fixed w-full h-[100dvh] top-0 right-0 z-[140] bg-black/30 `} ></div>
-                <div ref={navRef}
-                    className={`${isShow ? 'translate-x-0  ' : '  translate-x-full'} bg-white border p-15 fixed top-0 right-0  dark:bg-black  w-[70vw] h-[100dvh] z-[150]  transition-all duration-300 `}
+                <div
+                    className={`${isShow ? 'translate-x-0  ' : 'translate-x-full'} bg-white/90 backdrop-blur-2xl border p-15 fixed top-0 right-0  dark:bg-black  w-[70vw] h-[100dvh] z-[150]  transition-all duration-300 `}
                 >
                     <X
                         onClick={() => setIsShow(prev => false)}
@@ -90,11 +73,14 @@ const MobileNav = () => {
             </div>
             {/* Submenus */}
             {["isCalculators", "isAnnuity", "isFeedback"].map((menu) => (
-                <div ref={navItem}
+                <div
                     key={menu}
                     className={`fixed top-0 right-0 w-[70vw]  bg-white h-[100dvh] dark:bg-black p-10 border z-[160] transition-transform duration-300 ${activeMenu === menu ? "translate-x-0" : "translate-x-full"}`}
                 >
-                    <span className="absolute left-5 top-10 flex items-center gap-2 cursor-pointer" onClick={() => setActiveMenu(null)}>
+                    <span
+                        className="absolute left-5 top-10 flex items-center gap-2 cursor-pointer"
+                        onClick={() => setActiveMenu(null)}
+                    >
                         <ChevronLeft /> <h3>{menu.replace("is", "")}</h3>
                     </span>
                     <div className="mt-16 flex flex-col gap-5 text-lg">
