@@ -73,6 +73,11 @@ const FutureValueChart = ({ principal, rate, years, periodType }) => {
       <CardHeader>
         <CardTitle>Future Value Chart</CardTitle>
         <CardDescription> ${principal} initial investment at {rate * 100} % interest</CardDescription>
+        <CardDescription>
+          {chartData && chartData[0].futureValue && rate && years ? <div className="leading-none text-muted-foreground">
+            The Principal Amount Will Have Future Value of <span className="font-semibold" > ${chartData[chartData.length - 1].futureValue} </span>
+          </div> : ''}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer>
@@ -101,7 +106,7 @@ const FutureValueChart = ({ principal, rate, years, periodType }) => {
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) => `${value}`}
-                  label={{ value: "Amount", offset: 0, angle: -90, position: "insideLeft"  }}
+                  label={{ value: "Amount", offset: 0, angle: -90, position: "insideLeft" }}
                   className="text-sm"
                 />
                 <Line

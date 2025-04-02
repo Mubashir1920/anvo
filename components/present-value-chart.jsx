@@ -61,7 +61,6 @@ const ChartTooltipContent = ({ active, payload }) => {
 
 const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
     const chartData = calculatePresentValue(futureValue, rate, years, periodType);
-    console.log(chartData);
     return (
         <Card className="w-full">
             <CardHeader>
