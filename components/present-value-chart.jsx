@@ -8,6 +8,9 @@ const calculatePresentValue = (futureValue, rate, years, periodType) => {
 
     let periods = 0;
     switch (periodType) {
+        case 'daily':
+            periods = 360 * years;
+            break;
         case 'monthly':
             periods = 12 * years;
             break;
@@ -70,7 +73,7 @@ const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
                 </CardDescription>
                 <CardDescription>
                     {chartData && chartData[0].presentValue && rate && years ? <div className="leading-none text-muted-foreground">
-                        The Future Amount Will Have Present Value of <span className="font-semibold" > {chartData[0].presentValue} </span>
+                        The Future Amount Will Have Present Value of <span className="font-semibold" >${chartData[0].presentValue} </span>
                     </div> : ''}
                 </CardDescription>
             </CardHeader>
@@ -93,7 +96,7 @@ const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
                                     tickLine={false}
                                     axisLine={false}
                                     tickMargin={8}
-                                    label={{ value: "Number of years", position: "insideBottom", offset: -20 }}
+                                    label={{ value: "Number of Periods", position: "insideBottom", offset: -20 }}
                                     className="text-sm"
                                 />
                                 <YAxis
@@ -117,16 +120,16 @@ const PresentValueChart = ({ futureValue, rate, years, periodType }) => {
                                         r: 6,
                                     }}
                                 >
-                                    <LabelList
+                                    {periodType !== 'daily' && <LabelList
                                         dataKey="presentValue"
                                         position="top"
                                         offset={12}
                                         fill="#888"
                                         fontSize={12}
                                         formatter={(value) => `$${value}`}
-                                    />
+                                    />}
                                 </Line>
-                                <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+                                {periodType !== 'daily' &&<ChartTooltip cursor={false} content={<ChartTooltipContent />} />}
                             </LineChart>
                         </ResponsiveContainer>
                     </div>

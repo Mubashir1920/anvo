@@ -47,12 +47,13 @@ const PV = () => {
                             </div>
 
                             <div className="grid w-full max-w-full items-center gap-1.5">
-                                <Label htmlFor="periodType">Period Type</Label>
+                                <Label htmlFor="periodType">Compounding Frequency</Label>
                                 <Select value={periodType} onValueChange={setPeriodType}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Frequency" />
                                     </SelectTrigger>
                                     <SelectContent>
+                                        <SelectItem value="daily">Daily (360 Days)</SelectItem>
                                         <SelectItem value="monthly">Monthly</SelectItem>
                                         <SelectItem value="quarterly">Quarterly</SelectItem>
                                         <SelectItem value="semiAnnually">Semi-Annually</SelectItem>
@@ -67,7 +68,7 @@ const PV = () => {
                                     type="number"
                                     onWheel={(e) => e.target.blur()}
                                     name="years"
-                                    placeholder="years"
+                                    placeholder="Years"
                                     value={years}
                                     onChange={(e) => setYears(e.target.value)}
                                 />

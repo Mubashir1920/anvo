@@ -253,7 +253,7 @@ export default function LoanCalculator() {
             <CardDescription>Visualization of principal vs interest payments over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px]">
+            <div className="h-[300px] sm:h-[400px] ">
               <ChartContainer
                 config={{
                   principal: {
@@ -271,9 +271,9 @@ export default function LoanCalculator() {
                     data={chartData}
                     margin={{
                       top: 20,
-                      right: 30,
-                      left: 20,
-                      bottom: 60,
+                      right: 10,
+                      left: 10,
+                      bottom: -20,
                     }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />

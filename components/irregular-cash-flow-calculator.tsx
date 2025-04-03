@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type KeyboardEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -32,6 +32,17 @@ export default function IrregularCashFlowCalculator() {
       const updatedStreams = [...streams]
       updatedStreams.splice(index, 1)
       setStreams(updatedStreams)
+    }
+  }
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === "Enter") {
+      e.preventDefault() // Prevent form submission
+      // Only add a new stream if this is the last input in the list
+      if (index === streams.length - 1) {
+        addStream()
+        // Focus will automatically move to the new input in the next render cycle
+      }
     }
   }
 
@@ -100,7 +111,7 @@ export default function IrregularCashFlowCalculator() {
               id="rate"
               type="number"
               step="0.01"
-              min='1'
+              min="1"
               value={rate}
               onChange={(e) => setRate(e.target.value)}
               placeholder="Enter interest rate"
@@ -126,6 +137,7 @@ export default function IrregularCashFlowCalculator() {
                     type="number"
                     value={stream.amount}
                     onChange={(e) => handleStreamsChange(index, "amount", e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
                     placeholder="Amount"
                   />
                 </div>
@@ -138,6 +150,7 @@ export default function IrregularCashFlowCalculator() {
                     type="number"
                     value={stream.year}
                     onChange={(e) => handleStreamsChange(index, "year", e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
                     placeholder="Period"
                   />
                 </div>
@@ -158,10 +171,8 @@ export default function IrregularCashFlowCalculator() {
 
       {result !== null && (
         <Card>
-          <CardHeader>
-            <CardTitle>Result</CardTitle>
-          </CardHeader>
           <CardContent>
+            <p className="font-semibold" >Result</p>
             <p className="text-2xl font-bold">${result.toFixed(2)}</p>
             <p className="text-muted-foreground">
               {calcType === "present-value" ? "Present value of all cash flows" : "Future value of all cash flows"}
@@ -190,7 +201,7 @@ export default function IrregularCashFlowCalculator() {
       )}
 
       {rate && chartData.length > 0 && (
-        <IrregularStreamChart streams={chartData} rate={Number.parseFloat(rate) / 100} />
+        <IrregularStreamChart streams={chartData} calcType={calcType} rate={Number.parseFloat(rate) / 100} />
       )}
     </div>
   )

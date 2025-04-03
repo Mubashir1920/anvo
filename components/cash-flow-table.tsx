@@ -45,7 +45,7 @@ export default function CashFlowTable({ data, calculationType, rate }: CashFlowT
                     <TableCell>${item.calculatedValue.toFixed(2)}</TableCell>
                     <TableCell className={difference >= 0 ? "text-green-600" : "text-red-600"}>
                       {difference >= 0 ? "+" : ""}
-                      {difference.toFixed(2)}
+                      ${difference.toFixed(2)}
                     </TableCell>
                   </TableRow>
                 )

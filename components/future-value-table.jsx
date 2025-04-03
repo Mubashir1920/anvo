@@ -4,6 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 const calculateFutureValue = (principal, rate, years, periodType) => {
   let periodYears = 0;
   switch (periodType) {
+    case 'daily':
+      periodYears = 360 * years;
+      break;
     case 'monthly':
       periodYears = 12 * years;
       break;
@@ -33,7 +36,7 @@ const FutureValueTable = ({ principal, rate, years, periodType }) => {
   const tableData = calculateFutureValue(principal, rate, years, periodType)
 
   return (
-    <Card className="w-full">
+    <Card className="w-full h-[600px]  ">
       <CardHeader>
         <CardTitle>Future Value Table</CardTitle>
         <CardDescription>
@@ -41,9 +44,9 @@ const FutureValueTable = ({ principal, rate, years, periodType }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="overflow-x-auto">
+        <div className="overflow-y-scroll h-[500px]">
           <table className="w-full border-collapse">
-            <thead>
+            <thead className="sticky top-0 bg-background">
               <tr className="border-b">
                 <th className="py-3 px-4 text-left font-medium text-muted-foreground">Period</th>
                 <th className="py-3 px-4 text-right font-medium text-muted-foreground">Future Value</th>
